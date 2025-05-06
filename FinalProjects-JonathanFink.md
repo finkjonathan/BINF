@@ -12,29 +12,37 @@ Accession: "MF497827"
 Figure 1
 
 - **Viral classification:**  
-  - *ICTV classification*: [Insert ICTV classification here with citation].  
-  - *Baltimore classification*: Class 2, single stranded DNA virus.
+  *ICTV classification*:
+Realm: Monodnaviria
+Kingdom: Shotokuvirae
+Phylum: Cressdnaviricota
+Class: Arfiviricetes
+Order: Cirlivirales
+Family: Circoviridae
+Genus: Circovirus
+Species: Circovirus gryzon  
+  - *Baltimore classification*: Class 2, single stranded DNA virus. [5]
 
 - **Physical size:**  
-  - There was no physical size in nanometers that I was able to find online, however it was 2112 base pairs and most other circoviruses are 15 to 25 nanometers long which compared to the human cell which is much smaller and covid is roughly 50 to 140 nm which makes it smaller as well..
+  - There was no physical size in nanometers that I was able to find online, however it was 2112 base pairs and most other circoviruses are 15 to 25 nanometers long which compared to the human cell which is much smaller and covid is roughly 50 to 140 nm which makes it smaller as well [1],[3].
 
 - **Shape and envelope:**  
-  - The virus is circular in shape and has no envelope.
+  - The virus is circular in shape and has no envelope like most Circoviruses.[6]
 
 - **Discovery and outbreaks:**  
-  - The virus was discovered in 2014 in Fujian, China and has been found all over the Guangdong Province in China. There is no news on recent outbreaks.
+  - The virus was discovered in 2014 in Fujian, China and has been found all over the Guangdong Province in China. There is no news on recent outbreaks. [1]
 
 - **Host range:**  
-  - Bamboo rat circovirus was found in a bamboo rat and there is no evidence that it has infected any other species, however circoviruses are known to infect many kinds of vertebrates. Many new circoviruses have been identified in recent years and they have become a large threat with farmed animals.
+  - Bamboo rat circovirus was found in a bamboo rat and there is no evidence that it has infected any other species, however circoviruses are known to infect many kinds of vertebrates. Many new circoviruses have been identified in recent years and they have become a large threat with farmed animals.[6],[2]
 
 - **Cell entry:**  
   - Circoviruses penetrate the cell by binding to the hosts receptors and then perform receptor mediated endocytosis to get inside the cell. Once inside it replicates in the nucleus.
 
 - **Replication strategy:**  
-  - The virus replicates using a rolling-circle mechanism
+  - The virus replicates using a rolling-circle mechanism. [5]
 
 - **Release mechanism:**  
-  - If this virus follows other circoviruses, it likely uses the cell lysis release mechanism.
+  - If this virus follows other circoviruses, it likely uses the cell lysis release mechanism [4].
 
 - **Latency:**  
   - There is no latency in the host cells and like most circoviruses, it replicates actively. 
@@ -47,13 +55,10 @@ Figure 1
 
 - **Antiviral drugs:**  
   - There is no information on any antiviral drugs that have been created.
-
+-----------------------------------------------------------------------------------------------------------------------------------
 # Methods
 
 1. The first thing I did was find all of the accession codes that I will need and put all of them in a dictionary: 
-
-
-1. **First, I downloaded the viral sequence by accession number, and selected XXX close relatives to identify a most recent common ancesstor**  Use the provided accession number (Column X) to download the viral genome sequence. Show the python code for each of the functions you performed.
 
 ```python
 accession_codes = {
@@ -299,11 +304,9 @@ This made a ascii tree in terminal but not in FigTree. I was stuck on this for a
 ```python
 Phylo.write(tree, "virus_tree.nwk", "newick")
 ```
-9. 
-
+-----------------------------------------------------------------------------------------------------------------------------------
 # Results and Discussion
 
-Present your results, including tables, figures, and summary statistics. This should be written more like a text document. Make sure you follow the instructions about which plots to paste within here and reference them as figures (e.g., Fig. 1) when you are describing them.
 
 **Hydrophobicity Plot**
 
@@ -336,5 +339,14 @@ For my tree I used the L-INS-i model to best fit my data. It stands for local pa
 -----------------------------------------------------------------------------------------------------------------------------------
 
 # References Cited
+[1] Wu, J., and J. Jiang. “Bamboo Rat Circovirus Isolate FJ01, Complete Genome - Nucleotide - NCBI.” National Center for Biotechnology Information, U.S. National Library of Medicine, www.ncbi.nlm.nih.gov/nuccore/MF497827. Accessed 6 May 2025. 
 
-Use at least five references, formatted using a numbering system (1) or (Doe, et al. 2024). List the references in the appropriate bibliography format here. Use markdown to have all of your text references link to the bottom part of the page to where the reference is listed.
+[2] Poor, Allison. “Rhizomyinae (Bamboo Rats and Mole Rats).” Animal Diversity Web, animaldiversity.org/accounts/Rhizomyinae/. Accessed 6 May 2025. 
+
+[3] Gomez-Betancur, Diana, et al. “Canine Circovirus: An Emerging or an Endemic Undiagnosed Enteritis Virus?” Frontiers in Veterinary Science, U.S. National Library of Medicine, 17 Apr. 2023, pmc.ncbi.nlm.nih.gov/articles/PMC10150634/. 
+
+[4] “Genus: Circovirus.” ICTV, ictv.global/report/chapter/circoviridae/circoviridae/circovirus. Accessed 6 May 2025. 
+
+[5] Dr. Catherine Shaffer, Ph.D. “The Baltimore Classification System.” News, 26 Feb. 2019, www.news-medical.net/life-sciences/The-Baltimore-Classification-System.aspx. 
+
+[6] Ren, Zhaowen, et al. “The Genetic Diversity and Interspecific Transmission of Circovirus in Rhizomys Sinensis in Guangdong, Southern China.” Transboundary and Emerging Diseases, U.S. National Library of Medicine, 9 Nov. 2023, pmc.ncbi.nlm.nih.gov/articles/PMC12017068/. 
