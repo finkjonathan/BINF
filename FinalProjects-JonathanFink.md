@@ -75,6 +75,7 @@ Present your results, including tables, figures, and summary statistics. This sh
 (10 points) Identify any of your outlier hydrophobic proteins and BLAST them. What did these sequences annotate as? Might they have any important function to viral entry? 
 (10 points) Plot the genome size of your virus relative to other viruses (see code from lab 9.12b). 
 (20 points) Phylogeny and model selection. Use figtree to root the tree to your outgroup, make it look nice by ordering the nodes, increasing tip label size. State and interpret the best fit model used to infer this phylogeny. Display the bootstrap values. Discuss about your results. What are the three closest relatives of your virus, does it suggest a host switch? Are the branches well-supported by bootstrap values?
+<img src="FINALTREE.pdf" alt="FigTree plot, relatives" width="600"/>
 
 
 # References Cited
