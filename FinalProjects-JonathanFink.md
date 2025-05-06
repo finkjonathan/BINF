@@ -8,7 +8,7 @@ Accession: "MF497827"
 
 # Introduction
 
-
+![Bamboo Rat](BambooRatImage.jpg)
 - **Viral classification:**  
   - *ICTV classification*: [Insert ICTV classification here with citation].  
   - *Baltimore classification*: [Insert Baltimore group and explanation here].
