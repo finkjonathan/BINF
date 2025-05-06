@@ -21,31 +21,31 @@ Accession: "MF497827"
   - The virus is circular in shape and has no envelope.
 
 - **Discovery and outbreaks:**  
-  - The virus was discovered in 2014 in Fujian, China and there is no information on when the last outbreak occurred.
+  - The virus was discovered in 2014 in Fujian, China and has been found all over the Guangdong Province in China. There is no news on recent outbreaks.
 
 - **Host range:**  
-  - Bamboo rat circovirus was found in a bamboo rat and there is no evidence that it has infected any other species, however circoviruses are known to infect many kinds of vertebrates.
+  - Bamboo rat circovirus was found in a bamboo rat and there is no evidence that it has infected any other species, however circoviruses are known to infect many kinds of vertebrates. Many new circoviruses have been identified in recent years and they have become a large threat with farmed animals.
 
 - **Cell entry:**  
   - Circoviruses penetrate the cell by binding to the hosts receptors and then perform receptor mediated endocytosis to get inside the cell. Once inside it replicates in the nucleus.
 
 - **Replication strategy:**  
-  - [Your virus] [has its own replication machinery/relies on host machinery] and replicates by [describe process] [insert citation].
+  - The virus replicates using a rolling-circle mechanism
 
 - **Release mechanism:**  
-  - Viral progeny are released by [cell lysis, budding, excretion, etc.] [insert citation].
+  - If this virus follows other circoviruses, it likely uses the cell lysis release mechanism.
 
 - **Latency:**  
-  - [State if the virus shows latency and describe, or state if not] [insert citation].
+  - There is no latency in the host cells and like most circoviruses, it replicates actively. 
 
 - **Equilibrium and antigenic shift:**  
-  - [Discuss if the virus is in equilibrium with humans and if it shows antigenic shift] [insert citation].
+  - Bamboo rat Circoviruses is not at an equilibrium with humans and only affects bamboo rats and other rodents. An antigenic shift is not likely to happen as the virus has a low mutation rate. 
 
 - **Vaccines:**  
-  - [State if vaccines are available, type/mechanism of vaccine] [insert citation].
+  - As of now there are no vaccines created to counteract bamboo rat circovirus. 
 
 - **Antiviral drugs:**  
-  - [List available antivirals and their mechanisms] [insert citation].
+  - There is no information on any antiviral drugs that have been created.
 
 # Methods
 
