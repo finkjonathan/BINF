@@ -9,6 +9,7 @@ Accession: "MF497827"
 # Introduction
 
 <img src="BambooRatImage.jpg" alt="Bamboo Rat" width="300"/>
+Figure 1
 
 - **Viral classification:**  
   - *ICTV classification*: [Insert ICTV classification here with citation].  
@@ -180,8 +181,125 @@ plot_hydrophobicity_comparison(
 
 ```
 
-6. Now after plotting the hydrophobicities, I just need to do one more plot from lab 9 which was to compare the size of my genome to a random selection of other viruses
-7. 
+6. Now after plotting the hydrophobicities, I just needed to do one more plot from lab 9 which was to compare the size of my genome to a random selection of other viruses. To do this I went to NCBI and followed the instructions to randomly sample viruses and then copied the .csv onto my working directory. I also copied the viral_genome_histogram.py script onto my directory which I then edited to include my Bamboo Rat Circovirus. The result of this can be seen in Figure 3 below.
+```bash
+cp /projects/class/binf3101_001/viral_genome_histogram.py ~/final
+
+nano viral_genome_histogram.py
+python viral_genome_histogram.py
+```
+7. My next goal was to use FigTree and make a phylogenetic tree using the accession codes from earlier. To do this I mostly just copied and pasted lab 10 functions and Vedika's script.
+
+
+```python
+
+accession_codes = {
+    "BRCV": "MF497827","GuCV": "DQ845074", "GyurCV": "MZ710935", "DipV_4537": "OM869597", "HumCV1": "ON677309",
+    "BatACV10": "KX756986", "ChimpACV": "GQ404851", "BatCV-9": "KJ641741", "RoACV2": "KY370042",
+    "BanFV1": "OQ599922", "BatACV7": "KJ641723", "EquCV": "MW881235", "MonCV1": "MZ382570",
+    "MiCV": "KJ020099", "SonfelCV1": "MT610105", "SonfelCV2": "MT610106",
+    "ChickACyV1": "HQ738643", "GoACyV1": "GQ404857", "HuACyV4": "KM382270",
+    "BatACyV10": "KM382270", "HoACyV1": "KR902499",
+    "BovNa": "MH782429"
+}
+from Bio import Entrez
+import time
+
+def fetch_coronavirus_fasta(accession_codes, email="your.email@example.com"):
+    """
+    Fetch FASTA sequences from Entrez using given accession codes.
+    
+    Args:
+        accession_codes (dict): Dictionary of {name: accession_number}
+        email (str): Valid email for NCBI API usage
+    
+    Returns:
+        dict: {name: fasta_string} dictionary containing FASTA-formatted sequences
+    """
+    Entrez.email = email
+    sequences = {}
+    
+    for name, accession in accession_codes.items():
+        try:
+            with Entrez.efetch(
+                db="nucleotide",
+                id=accession,
+                rettype="fasta",
+                retmode="text"
+            ) as handle:
+                fasta_data = handle.read().strip()
+                sequences[name] = fasta_data
+                print(f"Retrieved {name} ({accession})")
+                time.sleep(0.35)  # NCBI recommends <3 requests/sec
+            
+        except Exception as e:
+            print(f"Error retrieving {name} ({accession}): {str(e)}")
+            sequences[name] = None  # Store None for failed retrievals
+    
+    return sequences
+
+fasta_sequences = fetch_coronavirus_fasta(accession_codes, email)
+
+# Save all sequences to a combined FASTA file
+with open("coronavirus_sequences.fasta", "w") as f:
+    for name, fasta in fasta_sequences.items():
+        if fasta:
+            f.write(fasta + "\n\n")
+
+# Access individual FASTA string
+print(fasta_sequences["Human-SARS"][:200])  # Show first 200 characters
+
+from Bio import Entrez
+from Bio import SeqIO
+from io import StringIO
+import time
+
+def calculate_sequence_lengths(sequences, accession_codes):
+    print("\n{:40} | {:15} | {}".format("Virus Name", "Accession", "Sequence Length"))
+    print("-" * 70)
+    
+    for name, accession in accession_codes.items():
+        fasta = sequences.get(name)
+        if not fasta:
+            print(f"{name[:40]:40} | {accession:15} | {'Retrieval failed':15}")
+            continue
+            
+        try:
+            record = SeqIO.read(StringIO(fasta), "fasta")
+            print(f"{name[:40]:40} | {accession:15} | {len(record.seq):,} bp")
+        except Exception as e:
+            print(f"{name[:40]:40} | {accession:15} | {'Invalid format':15}")
+
+calculate_sequence_lengths(fasta_sequences, accession_codes)
+```
+I then used mafft script in order to align the file as all sequences need to be the same length in order to create a tree.
+```bash
+module load mafft
+mafft --auto sequences.fasta > all_sequences_aligned.fasta
+
+```
+Now to create the tree:
+```python
+from Bio import Phylo
+from Bio.Phylo.TreeConstruction import DistanceCalculator
+from Bio.Phylo.TreeConstruction import DistanceTreeConstructor
+from Bio import AlignIO
+
+seq_alt=AlignIO.read("all_sequences_aligned.fasta", "fasta")
+
+calculator = DistanceCalculator('identity')
+dm = calculator.get_distance(seq_alt)
+constructor = DistanceTreeConstructor()
+tree = constructor.upgma(dm)
+Phylo.draw_ascii(tree)
+
+```
+This made a ascii tree in terminal but not in FigTree. I was stuck on this for a little bit as I forgot how to get the tree on FigTree, but I was eventually able to figure it out by looking at Vedika's script. This saved the tree I made into the newick file format that I was able to use and create a tree out of, see Figure 4.
+
+```python
+Phylo.write(tree, "virus_tree.nwk", "newick")
+```
+9. 
 
 # Results and Discussion
 
@@ -202,6 +320,7 @@ In this image we plot the hydrophobicity of the bamboo circovirus against an E.c
 
 
 <img src="viral_genome_histogramMF.png" alt="Genome size compared to other viruses" width="600"/>
+Figure 3
 
 The Bamboo Circovirus falls roughly in the middle of the pack when compared to other viruses based on its genome size of 2112bp. 
 
@@ -210,6 +329,7 @@ The Bamboo Circovirus falls roughly in the middle of the pack when compared to o
 **Phylogeny Tree**
 
 <img src="FigTree.png" alt="FigTree plot, relatives" width="600"/>
+Figure 4
 
 For my tree I used the L-INS-i model to best fit my data. It stands for local pairwise alignment, iterative refinement, incorporating structural information. In MAFFT, it is one of the more accurate models, but the downside is how slow it is and computationally intensive. We can see our virus with its accession code: MF497827. Our outgroup is the MH782429.1 (Bovdisa virus) rooted at the top. Its three closest relatives are the dipodfec virus, rodent circovirus, and sonfela circovirus 1. There is no evidence of a host switch and the bootstrap values are not good at all.
 
