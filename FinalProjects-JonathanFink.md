@@ -313,7 +313,7 @@ Phylo.write(tree, "virus_tree.nwk", "newick")
 <img src="hydrophobicityNEWVIRUScomparison.png" alt="Hydrophobicity comparison" width="600"/>
 Figure 2
 
-In this image we plot the hydrophobicity of the bamboo circovirus against an E.coli proteome. We can see that the hydrophobicity sits roughly around 0 and is fairly simular to the E.coli, however we only have 5 points plotted of the circovirus versus the 7,767 plotted for the E.coli meaning ours is a less accruate measure.
+In this image we plot the hydrophobicity of the bamboo circovirus against an E.coli proteome. We can see that the hydrophobicity sits roughly around 0 and is fairly similar to the E.coli, however we only have 5 points plotted of the circovirus versus the 7,767 plotted for the E.coli meaning ours is a less accurate measure.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 I struggled a decent bit with this portion, but eventually ended up blasting one of the proteins. There wasn't really any true outliers as there were only 5 data points to work off of. After blasting MF497827.1_ORF1, I found it was related to replication and likely is very imporant on how the virus functions and reproduces. 
