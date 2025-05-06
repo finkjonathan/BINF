@@ -69,9 +69,13 @@ mafft --auto input.fasta > aligned.fast
 
 Present your results, including tables, figures, and summary statistics. This should be written more like a text document. Make sure you follow the instructions about which plots to paste within here and reference them as figures (e.g., Fig. 1) when you are describing them.
 
-(10 points) Hydrophobicity plot agains the E.coli proteome
+**Hydrophobicity Plot**
 
 <img src="hydrophobicityNEWVIRUScomparison.png" alt="Hydrophobicity comparison" width="600"/>
+
+In this image we plot the hydrophobicity of the bamboo circovirus against an E.coli proteome. We can see that the hydrophobicity sits roughly around 0 and is fairly simular to the E.coli, however we only have 5 points plotted of the circovirus versus the 7,767 plotted for the E.coli meaning ours is a less accruate measure.
+
+-----------------------------------------------------------------------------------------------------------------------------------
 (10 points) Identify any of your outlier hydrophobic proteins and BLAST them. What did these sequences annotate as? Might they have any important function to viral entry? 
 
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -83,12 +87,14 @@ Present your results, including tables, figures, and summary statistics. This sh
 The Bamboo Circovirus falls roughly in the middle of the pack when compared to other viruses based on its genome size of 2112bp. 
 
 -----------------------------------------------------------------------------------------------------------------------------------
-(20 points) Phylogeny and model selection. Use figtree to root the tree to your outgroup, make it look nice by ordering the nodes, increasing tip label size. State and interpret the best fit model used to infer this phylogeny. Display the bootstrap values. Discuss about your results. What are the three closest relatives of your virus, does it suggest a host switch? Are the branches well-supported by bootstrap values?
-**Phylogeny**
+
+**Phylogeny Tree**
 
 <img src="FigTree.png" alt="FigTree plot, relatives" width="600"/>
 
 For my tree I used the L-INS-i model to best fit my data. It stands for local pairwise alignment, iterative refinement, incorporating structural information. In MAFFT, it is one of the more accurate models, but the downside is how slow it is and computationally intensive. We can see our virus with its accession code: MF497827. Our outgroup is the MH782429.1 (Bovdisa virus) rooted at the top. Its three closest relatives are the dipodfec virus, rodent circovirus, and sonfela circovirus 1. There is no evidence of a host switch and the bootstrap values are not good at all.
+
+-----------------------------------------------------------------------------------------------------------------------------------
 
 # References Cited
 
