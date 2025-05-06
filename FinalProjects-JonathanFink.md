@@ -9,24 +9,25 @@ Accession: "MF497827"
 # Introduction
 
 <img src="BambooRatImage.jpg" alt="Bamboo Rat" width="300"/>
+
 - **Viral classification:**  
   - *ICTV classification*: [Insert ICTV classification here with citation].  
-  - *Baltimore classification*: [Insert Baltimore group and explanation here].
+  - *Baltimore classification*: Class 2, single stranded DNA virus.
 
 - **Physical size:**  
-  - The physical size of [your virus] is approximately XX nm, which is [smaller/larger] than a typical human cell (~10,000 nm) and [smaller/larger] than SARS-CoV-2 (~120 nm) [insert citation].
+  - There was no physical size in nanometers that I was able to find online, however it was 2112 base pairs and most other circoviruses are 15 to 25 nanometers long which compared to the human cell which is much smaller and covid is roughly 50 to 140 nm which makes it smaller as well..
 
 - **Shape and envelope:**  
-  - The virus exhibits a [describe shape, e.g., icosahedral, helical, complex] morphology and [does/does not] possess an envelope [insert citation].
+  - The virus is circular in shape and has no envelope.
 
 - **Discovery and outbreaks:**  
-  - [Your virus] was first described in [year] [insert citation]. The most recent outbreak occurred in [year/location] [insert citation].
+  - The virus was discovered in 2014 in Fujian, China and there is no information on when the last outbreak occurred.
 
 - **Host range:**  
-  - This virus infects [host(s)], and is [host-specific/generalist] [insert citation].
+  - Bamboo rat circovirus was found in a bamboo rat and there is no evidence that it has infected any other species, however circoviruses are known to infect many kinds of vertebrates.
 
 - **Cell entry:**  
-  - The virus penetrates the host cell via [mechanism, e.g., endocytosis, membrane fusion, receptor-mediated entry] [insert citation].
+  - Circoviruses penetrate the cell by binding to the hosts receptors and then perform receptor mediated endocytosis to get inside the cell. Once inside it replicates in the nucleus.
 
 - **Replication strategy:**  
   - [Your virus] [has its own replication machinery/relies on host machinery] and replicates by [describe process] [insert citation].
