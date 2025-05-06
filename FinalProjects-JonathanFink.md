@@ -73,11 +73,22 @@ Present your results, including tables, figures, and summary statistics. This sh
 
 <img src="hydrophobicityNEWVIRUScomparison.png" alt="Hydrophobicity comparison" width="600"/>
 (10 points) Identify any of your outlier hydrophobic proteins and BLAST them. What did these sequences annotate as? Might they have any important function to viral entry? 
-(10 points) Plot the genome size of your virus relative to other viruses (see code from lab 9.12b). 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+**Bamboo Circovirus Compared to other Viruses:**
+
+
 <img src="viral_genome_histogramMF.png" alt="Genome size compared to other viruses" width="600"/>
+
+The Bamboo Circovirus falls roughly in the middle of the pack when compared to other viruses based on its genome size of 2112bp. 
+
+-----------------------------------------------------------------------------------------------------------------------------------
 (20 points) Phylogeny and model selection. Use figtree to root the tree to your outgroup, make it look nice by ordering the nodes, increasing tip label size. State and interpret the best fit model used to infer this phylogeny. Display the bootstrap values. Discuss about your results. What are the three closest relatives of your virus, does it suggest a host switch? Are the branches well-supported by bootstrap values?
+**Phylogeny**
+
 <img src="FigTree.png" alt="FigTree plot, relatives" width="600"/>
 
+For my tree I used the L-INS-i model to best fit my data. It stands for local pairwise alignment, iterative refinement, incorporating structural information. In MAFFT, it is one of the more accurate models, but the downside is how slow it is and computationally intensive. We can see our virus with its accession code: MF497827. Our outgroup is the MH782429.1 (Bovdisa virus) rooted at the top. Its three closest relatives are the dipodfec virus, rodent circovirus, and sonfela circovirus 1. There is no evidence of a host switch and the bootstrap values are not good at all.
 
 # References Cited
 
