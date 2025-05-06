@@ -49,21 +49,139 @@ Accession: "MF497827"
 
 # Methods
 
+1. The first thing I did was find all of the accession codes that I will need and put all of them in a dictionary: 
+
+
 1. **First, I downloaded the viral sequence by accession number, and selected XXX close relatives to identify a most recent common ancesstor**  Use the provided accession number (Column X) to download the viral genome sequence. Show the python code for each of the functions you performed.
 
 ```python
-#Insert python code after each step
+accession_codes = {
+    "BRCV": "MF497827","GuCV": "DQ845074", "GyurCV": "MZ710935", "DipV_4537": "OM869597", "HumCV1": "ON677309",
+    "BatACV10": "KX756986", "ChimpACV": "GQ404851", "BatCV-9": "KJ641741", "RoACV2": "KY370042",
+    "BanFV1": "OQ599922", "BatACV7": "KJ641723", "EquCV": "MW881235", "MonCV1": "MZ382570",
+    "MiCV": "KJ020099", "SonfelCV1": "MT610105", "SonfelCV2": "MT610106",
+    "ChickACyV1": "HQ738643", "GoACyV1": "GQ404857", "HuACyV4": "KM382270",
+    "BatACyV10": "KM382270", "HoACyV1": "KR902499",
+    "BovNa": "MH782429"
+}
 ```
-...Follow the additional methods instructions in the text. Make sure to include your code where relevant! For example, if you used a slurm script, make sure to paste it in here.
+This included the bamboo rat circovirus as well as 15 other circoviruses, 5 cycloviruses, and 1 virus that was different enough to be an outgroup.
 
-e.g. 
-Align your sequences using the MAFFT slurm script
-```bash
-#!/bin/bash
-#SBATCH --job-name=mafft_align
-mafft --auto input.fasta > aligned.fast
+2. Next I made sure to download a MF497827.fasta file using modified code from lab 9:
+```python
+from Bio import Entrez
+Entrez.email = "jfink15@charlotte.edu"
+handle = Entrez.efetch(db="nucleotide", id="MF497827", rettype="fasta", retmode="text")
+record = handle.read()
+handle.close()
+with open("MF497827.fasta", "w") as f:
+    f.write(record)
 ```
-     
+
+
+3. Using the new fasta file of my virus I then used more lab 9 code that I changed to fit my virus in order to find all the orfs in my virus and put them in a file for easy access.
+```python
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqUtils import nt_search
+# Load your FASTA file
+file_path = "MF497827.fasta" # Replace with your virus fasta file
+record = SeqIO.read(file_path, "fasta")
+sequence = record.seq
+# Function to find open reading frames (ORFs)
+def find_orfs(sequence, min_length=300):
+    orfs = []
+    for frame in range(3): # Check in all 3 frames
+        translated = sequence[frame:].translate() # Translate our sequence to proteins
+        start = None
+        for i in range(len(translated)):
+            if translated[i] == 'M' and start is None: # Start codon
+                start = i
+            elif translated[i] == '*' and start is not None: # Stop codon
+                if i - start >= min_length: # Check if ORF is longer than 300 bp
+                    orfs.append(sequence[frame + start*3 : frame + i*3])
+                start = None
+    return orfs
+# Find ORFs longer than 300 bp
+orfs = find_orfs(sequence, min_length=300)
+# Print ORFs (if any)
+print(f"Found {len(orfs)} ORFs longer than 300 bp.")
+for idx, orf in enumerate(orfs, 1):
+    print(f"ORF {idx}: Length {len(orf)} bp")
+# Optionally, save the ORFs to a new FASTA file
+with open("MF497827_ORFs.fasta", "w") as output_file:
+    for idx, orf in enumerate(orfs, 1):
+        output_file.write(f">ORF_{idx}\n")
+        output_file.write(f"{orf}\n")
+print("ORFs saved to MF497827_ORFs.fasta")
+
+```
+
+4. Next I needed to translate the orf into a proteins and save them in a new file called MF497827_proteome.fasta. I used modified code from Vedika's script seen below:
+```python
+from Bio import SeqIO
+
+# Load the ORFs FASTA file
+orfs = list(SeqIO.parse("MF497827_ORFs.fasta", "fasta"))
+# Translate nucleotide sequences to protein sequences
+proteins = []
+for orf in orfs:
+    protein_seq = orf.seq.translate(to_stop=True)
+    proteins.append(protein_seq)
+
+# Save translated proteins to FASTA
+with open("MF497827_proteome.fasta", "w") as out_file:
+    for idx, prot in enumerate(proteins, 1):
+        out_file.write(f">Protein_{idx}\n")
+        out_file.write(str(prot) + "\n")
+
+# This print is outside the with block
+print(f"{len(proteins)} proteins saved to MF497827_proteome.fasta")
+```
+5. My next goal was to plot the hydrophobicity charts, and compare the calculated hydrophobicity of my virus and compare it to the E.coli genome that we used from lab_9. To do this I copied functions and loaded the e.coli_genome.gb into my working directory. I also used pandas to make the tables and then plotted the two against each other as seen below in Figure 2.
+```python
+from my_helpers import find_all_orfs
+orfs = find_all_orfs("MF497827.fasta")
+long_orfs = [orf for orf in orfs if orf['length'] >= 300]
+
+
+email = "jfink15@charlotte.edu"
+fasta_sequences = fetch_coronavirus_fasta(accession_codes, email)
+
+# Save all sequences to a combined FASTA file
+
+
+
+MF497827_data = calculate_hydrophobicities("MF497827_proteome.fasta", hydro_table)
+
+import pandas as pd
+df = pd.DataFrame(MF497827_data)
+print(df[['sequence_id', 'start', 'end', 'average_hydrophobicity']].head())
+
+from my_helpers import find_all_orfs
+orfs = find_all_orfs("ecoli_genome.gb")
+long_orfs = [orf for orf in orfs if orf['length'] >= 300]
+
+export_trimmed_proteins(long_orfs, "ecoli_genome.gb")
+ecoli_data = calculate_hydrophobicities("ecoli_genome.gb", hydro_table)
+
+# Convert to pandas DataFrame for analysis
+import pandas as pd
+df = pd.DataFrame(ecoli_data)
+print(df[['sequence_id', 'start', 'end', 'average_hydrophobicity']].head())
+
+plot_hydrophobicity_comparison(
+    ecoli_data,
+    MF497827_data,
+    ecoli_label="E. coli",
+    other_label="MF497827",
+    save_path="hydrophobicityNEWVIRUScomparison.png"
+)
+
+```
+
+6. Now after plotting the hydrophobicities, I just need to do one more plot from lab 9 which was to compare the size of my genome to a random selection of other viruses
+7. 
 
 # Results and Discussion
 
@@ -72,6 +190,7 @@ Present your results, including tables, figures, and summary statistics. This sh
 **Hydrophobicity Plot**
 
 <img src="hydrophobicityNEWVIRUScomparison.png" alt="Hydrophobicity comparison" width="600"/>
+Figure 2
 
 In this image we plot the hydrophobicity of the bamboo circovirus against an E.coli proteome. We can see that the hydrophobicity sits roughly around 0 and is fairly simular to the E.coli, however we only have 5 points plotted of the circovirus versus the 7,767 plotted for the E.coli meaning ours is a less accruate measure.
 
